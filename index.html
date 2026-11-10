@@ -7,9 +7,9 @@
   
   <!-- WhatsApp / Social Preview Cards -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Payment Request | Think Big Property Management">
+  <meta property="og:title" content="Payment Request | 3D ASSAM">
   <meta property="og:description" content="Click here to complete payment securely via Google Pay, PhonePe, Paytm, or WhatsApp Pay.">
-  <meta property="og:image" content="https://thinkbigproperty.com/logo.png">
+  <meta property="og:image" content="https://3DASSAM.com/logo.png">
   
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,7 @@
 </head>
 <body>
   <div class="card">
-    <div class="title">Think Big Property Management</div>
+    <div class="title">3D ASSAM</div>
     <div class="subtitle">Complete your payment via any UPI app</div>
     
     <div class="amount-box" id="amount-container" style="display: none;">
@@ -43,11 +43,11 @@
     // Extract parameters from URL: ?am=5000&note=Token
     const params = new URLSearchParams(window.location.search);
     const amount = params.get('am') || '';
-    const note = params.get('note') || 'Payment to Think Big Property';
+    const note = params.get('note') || 'Payment to 3D ASSAM';
     
     // REPLACE WITH YOUR ACTUAL VPA (e.g. business@icici)
     const vpa = "rakeshparbat-1@oksbi";
-    const name = encodeURIComponent("Think Big Property Management");
+    const name = encodeURIComponent("3D ASSAM");
     
     if (amount) {
       document.getElementById('amount-container').style.display = 'block';
