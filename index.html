@@ -3,63 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Request | 3D ASSAM</title>
+  <title>Complete Payment | 3D Assam</title>
   
-  <!-- WhatsApp / Social Preview Cards -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Payment Request | 3D ASSAM">
-  <meta property="og:description" content="Click here to complete payment securely via Google Pay, PhonePe, Paytm, or WhatsApp Pay.">
-  <meta property="og:image" content="https://3DASSAM.com/logo.png">
-  
+  <meta property="og:title" content="Payment Request | 3D Assam">
+  <meta property="og:description" content="Tap to review your order details and pay securely via Google Pay, PhonePe, Paytm, or BHIM.">
+  <meta property="og:image" content="https://3dassam.com/assets/og-checkout-preview.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --silk-bg: #fcf9f2;
+      --card-bg: #ffffff;
+      --assam-red: #9e2a2b;
+      --assam-red-dark: #7f1d1d;
+      --gold-accent: #c59b27;
+      --text-main: #1f2421;
+      --text-muted: #64748b;
+      --border-color: #eadecc;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f0f2f5; padding: 16px; }
-    .card { background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 32px 24px; max-width: 400px; width: 100%; text-align: center; }
-    .title { font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
-    .subtitle { font-size: 14px; color: #64748b; margin-bottom: 24px; }
-    .amount-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 24px; }
-    .amount-label { font-size: 12px; color: #94a3b8; text-transform: uppercase; font-weight: 600; }
-    .amount-val { font-size: 28px; font-weight: 800; color: #0f172a; margin-top: 4px; }
-    .btn { display: block; width: 100%; padding: 15px 0; background: #075e54; color: #ffffff; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; transition: background 0.2s; }
-    .btn:hover { background: #064c44; }
-    .footer-note { font-size: 12px; color: #94a3b8; margin-top: 20px; }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background-color: var(--silk-bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    .checkout-wrapper {
+      background: var(--card-bg);
+      width: 100%;
+      max-width: 440px;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 12px 36px rgba(158, 42, 43, 0.08);
+      overflow: hidden;
+    }
+
+    .kingkhap-border {
+      height: 6px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--assam-red),
+        var(--assam-red) 10px,
+        var(--gold-accent) 10px,
+        var(--gold-accent) 20px
+      );
+    }
+
+    .brand-header {
+      padding: 24px 20px 18px;
+      text-align: center;
+      background: linear-gradient(180deg, #faf6ee 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--assam-red);
+      color: #ffffff;
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 12px rgba(158, 42, 43, 0.2);
+    }
+
+    .brand-name {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--assam-red);
+    }
+
+    .brand-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .order-content {
+      padding: 24px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .order-card {
+      background: var(--silk-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .item-list {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+
+    .item-name {
+      font-weight: 600;
+      max-width: 75%;
+    }
+
+    .order-ref {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 12px 0;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .total-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .total-val {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--assam-red);
+    }
+
+    .merchant-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fbfbfb;
+      border: 1px dashed #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .merchant-text {
+      font-size: 12px;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    .merchant-vpa {
+      font-weight: 600;
+      color: var(--assam-red);
+    }
+
+    .pay-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--assam-red);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 16px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: background 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 6px 18px rgba(158, 42, 43, 0.25);
+    }
+
+    .pay-button:hover, .pay-button:active {
+      background: var(--assam-red-dark);
+      transform: translateY(-1px);
+    }
+
+    .upi-badges {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-secure {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="title">3D ASSAM</div>
-    <div class="subtitle">Complete your payment via any UPI app</div>
-    
-    <div class="amount-box" id="amount-container" style="display: none;">
-      <div class="amount-label">Amount Payable</div>
-      <div class="amount-val" id="display-amount">₹0</div>
-    </div>
 
-    <a id="pay-btn" class="btn" href="#">Pay via UPI</a>
-    <p class="footer-note">Verified NPCI 0% Fee Direct Bank Transfer</p>
+  <div class="checkout-wrapper">
+    <div class="kingkhap-border"></div>
+
+    <header class="brand-header">
+      <div class="brand-logo-badge">3D</div>
+      <h1 class="brand-name">3D ASSAM</h1>
+      <p class="brand-tagline">Crafted with Heritage • Instant UPI Checkout</p>
+    </header>
+
+    <div class="order-content">
+      <div class="section-title">Order Summary</div>
+
+      <div class="order-card">
+        <div class="item-list" id="items-container">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="total-row">
+          <span class="total-label">Total Payable</span>
+          <span class="total-val" id="total-amount">₹0</span>
+        </div>
+      </div>
+
+      <div class="merchant-banner">
+        <span style="font-size: 18px;">🛡️</span>
+        <div class="merchant-text">
+          Paying directly to verified account:<br>
+          <span class="merchant-vpa">rakeshparbat-1@oksbi</span>
+        </div>
+      </div>
+
+      <a id="pay-action-btn" class="pay-button" href="#">
+        <span>Pay via Any UPI App</span>
+        <span id="btn-amount-badge"></span>
+      </a>
+
+      <div class="upi-badges">
+        <span>GPay</span> • <span>PhonePe</span> • <span>Paytm</span> • <span>BHIM</span>
+      </div>
+
+      <p class="footer-secure">🔒 0% Convenience Fee • Direct Bank Settlement</p>
+    </div>
   </div>
 
   <script>
-    // Extract parameters from URL: ?am=5000&note=Token
     const params = new URLSearchParams(window.location.search);
-    const amount = params.get('am') || '';
-    const note = params.get('note') || 'Payment to 3D ASSAM';
-    
-    // REPLACE WITH YOUR ACTUAL VPA (e.g. business@icici)
-    const vpa = "rakeshparbat-1@oksbi";
-    const name = encodeURIComponent("3D ASSAM");
-    
-    if (amount) {
-      document.getElementById('amount-container').style.display = 'block';
-      document.getElementById('display-amount').innerText = '₹' + Number(amount).toLocaleString('en-IN');
+    const rawAmount = params.get('am') || '';
+    const rawItems = params.get('items') || params.get('item') || 'WhatsApp Catalog Order';
+    const rawNote = params.get('note') || '3D Assam Purchase';
+
+    const payeeVpa = "rakeshparbat-1@oksbi";
+    const payeeName = encodeURIComponent("3D Assam");
+
+    // Format & display price
+    const formattedAmount = rawAmount && !isNaN(rawAmount) 
+      ? '₹' + Number(rawAmount).toLocaleString('en-IN') 
+      : '₹0';
+      
+    document.getElementById('total-amount').innerText = formattedAmount;
+    if (rawAmount && !isNaN(rawAmount)) {
+      document.getElementById('btn-amount-badge').innerText = `(${formattedAmount})`;
     }
 
-    const upiUri = `upi://pay?pa=${vpa}&pn=${name}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
-    document.getElementById('pay-btn').setAttribute('href', upiUri);
+    // Render items list (supports comma-separated items: "1x Saree, 2x Gamusa")
+    const container = document.getElementById('items-container');
+    const itemsList = decodeURIComponent(rawItems).split(',');
+    
+    container.innerHTML = itemsList.map(item => `
+      <div class="item-row">
+        <div class="item-name">${item.trim()}</div>
+      </div>
+    `).join('') + `<div class="order-ref">Ref: ${decodeURIComponent(rawNote)}</div>`;
 
-    // Auto-trigger UPI intent sheet directly on mobile browser launch
-    if (/Android|iPhone/i.test(navigator.userAgent)) {
-      window.location.href = upiUri;
+    // Construct NPCI deep link
+    const upiLink = `upi://pay?pa=${payeeVpa}&pn=${payeeName}&am=${rawAmount}&cu=INR&tn=${encodeURIComponent(rawNote)}`;
+    document.getElementById('pay-action-btn').setAttribute('href', upiLink);
+
+    // Auto-launch UPI selector sheet if opened on mobile browser
+    if (/Android|iPhone/i.test(navigator.userAgent) && rawAmount) {
+      window.location.href = upiLink;
     }
   </script>
 </body>
