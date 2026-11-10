@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Request | Think Big Property Management</title>
+  
+  <!-- WhatsApp / Social Preview Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Payment Request | Think Big Property Management">
+  <meta property="og:description" content="Click here to complete payment securely via Google Pay, PhonePe, Paytm, or WhatsApp Pay.">
+  <meta property="og:image" content="https://thinkbigproperty.com/logo.png">
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f0f2f5; padding: 16px; }
+    .card { background: #ffffff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); padding: 32px 24px; max-width: 400px; width: 100%; text-align: center; }
+    .title { font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+    .subtitle { font-size: 14px; color: #64748b; margin-bottom: 24px; }
+    .amount-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    .amount-label { font-size: 12px; color: #94a3b8; text-transform: uppercase; font-weight: 600; }
+    .amount-val { font-size: 28px; font-weight: 800; color: #0f172a; margin-top: 4px; }
+    .btn { display: block; width: 100%; padding: 15px 0; background: #075e54; color: #ffffff; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 16px; transition: background 0.2s; }
+    .btn:hover { background: #064c44; }
+    .footer-note { font-size: 12px; color: #94a3b8; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="title">Think Big Property Management</div>
+    <div class="subtitle">Complete your payment via any UPI app</div>
+    
+    <div class="amount-box" id="amount-container" style="display: none;">
+      <div class="amount-label">Amount Payable</div>
+      <div class="amount-val" id="display-amount">₹0</div>
+    </div>
+
+    <a id="pay-btn" class="btn" href="#">Pay via UPI</a>
+    <p class="footer-note">Verified NPCI 0% Fee Direct Bank Transfer</p>
+  </div>
+
+  <script>
+    // Extract parameters from URL: ?am=5000&note=Token
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('am') || '';
+    const note = params.get('note') || 'Payment to Think Big Property';
+    
+    // REPLACE WITH YOUR ACTUAL VPA (e.g. business@icici)
+    const vpa = "rakeshparbat-1@oksbi";
+    const name = encodeURIComponent("Think Big Property Management");
+    
+    if (amount) {
+      document.getElementById('amount-container').style.display = 'block';
+      document.getElementById('display-amount').innerText = '₹' + Number(amount).toLocaleString('en-IN');
+    }
+
+    const upiUri = `upi://pay?pa=${vpa}&pn=${name}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+    document.getElementById('pay-btn').setAttribute('href', upiUri);
+
+    // Auto-trigger UPI intent sheet directly on mobile browser launch
+    if (/Android|iPhone/i.test(navigator.userAgent)) {
+      window.location.href = upiUri;
+    }
+  </script>
+</body>
+</html>
